@@ -1,0 +1,40 @@
+body {
+    background-color:black;
+}
+
+h1 {
+    color: gold;
+    font-family: Monocraft;
+    margin: 0 35% 0 25%;
+    font-size: 32px;
+}
+
+h2 {
+    color: goldenrod;
+    font-family: 'Marck Script';
+    margin: 0 30% 0 40%;
+    font-size: 28px;
+}
+
+p {
+    color: darkgoldenrod;
+    font-family: 'Comic Sans MS';
+    margin: 0 30% 0 30%;
+    font-size: 20px;
+}
+
+summary {
+    color: goldenrod;
+    font-family: 'Marck Script';
+    margin: 0 30% 0 35%;
+    font-size: 28px;
+}
+
+.b {
+    font-style:italic;
+}
+
+img {
+    margin: 0 30% 0 30%;
+    border-radius:50px 20px 50px 20px;
+}
