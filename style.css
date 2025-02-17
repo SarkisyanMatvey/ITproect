@@ -1,16 +1,14 @@
 body {
-    background-color: black;
-    color: darkgoldenrod; /* Основной цвет текста */
-    font-family: 'Comic Sans MS', sans-serif; /* Шрифт по умолчанию */
-    text-align: center; /* Центрирование контента */
+    font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
+    text-align: center; /* Центрирование текста */
+    background-color: #000; /* Черный фон */
+    color: #ffa500; /* Оранжевый текст */
 }
 
 h1 {
-    color: gold;
-    font-family: Monocraft, monospace; /* Заголовок */
-    margin: 20px auto; /* Центрирование заголовка */
-    font-size: 32px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
+    font-size: 3em; /* Увеличенный размер заголовка */
+    color: #ffa500; /* Оранжевый заголовок */
+    text-shadow: 2px 2px 4px #000; /* Тень для заголовка */
 }
 
 h2 {
@@ -38,9 +36,43 @@ summary {
     font-style: italic; /* Курсивный текст */
 }
 
+#word-display {
+    font-size: 4em; /* Увеличенный размер отображаемого слова */
+    margin-bottom: 20px;
+    letter-spacing: 15px; /* Разряженные буквы */
+}
+
+#image-container {
+    display: flex;
+    justify-content: flex-start; /* Выравнивание по левому краю */
+    align-items: center;
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
 img {
-    margin: 0 auto; /* Центрирование изображения */
-    border-radius: 50px 20px 50px 20px; /* Скругление углов изображения */
+    max-width: 200px; /* Ограничиваем ширину изображения */
+    margin-right: 30px; /* Отступ между изображением и текстом */
+}
+
+#guesses {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 600px; /* Увеличенная ширина для кнопок в ряду */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#guesses button {
+    width: calc(100% / 7 - 10px); /* Ширина кнопки с учетом отступов */
+    box-sizing: border-box; /* Чтобы отступы не увеличивали ширину кнопки */
+    font-size: 1.5em; /* Увеличенный размер текста на кнопках */
+}
+
+#lives {
+    font-size: 2.5em; /* Увеличенный размер отображения жизней */
+    margin-bottom: 20px;
 }
 
 /* Стили для ссылок в стиле "Bendy" */
@@ -58,66 +90,49 @@ a {
 }
 
 a:hover {
-    transform: rotate(-3deg);
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Стили для виселицы */
-.hangman-container {
-    display: flex;
-    justify-content: center; /* Центрирование виселицы */
-}
-
-.hangman {
-    width: 200px; /* Ширина виселицы */
-}
-
-.hangman img {
-    width: auto; /* Автоматическая ширина изображения виселицы */
-}
-
-/* Стили для отображения слова и жизней */
-#word-display {
-    font-size: 36px; 
-    margin: 20px auto; 
-}
-
-#lives {
-    font-size: 24px; 
-}
-
-/* Стили для кнопок угадывания букв */
-#guesses button {
-    padding: 8px 12px; 
-    margin: 5px; 
-    font-size: 18px; 
-    border-radius: 5px; 
-}
-
-#guesses button:hover {
-   background-color: #ddd; 
-}
-
-/* Стили для сообщений об окончании игры */
-#message {
-   font-size: 24px; 
-   margin-top:20px; 
-   color:red; 
+   transform: rotate(-3deg);
+   background-color: rgba(0, 0, 0, 0.1);
+   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Кнопки перезапуска и подсказок */
 button {
-   display:block; 
-   margin:auto; 
-   padding:10px; 
-   border-radius:5px; 
-   background-color:#fff; 
-   color:black; 
+   padding: 15px 30px; /* Увеличенные отступы для кнопок */
+   font-size: 1.5em; /* Увеличенный размер текста на кнопках */
+   background-color: #ffa500; /* Оранжевые кнопки */
+   color: black; /* Черный текст на кнопках */
+   border-radius: 5px;
    cursor:pointer; 
+   margin:auto; 
    transition:.3s ease;
 }
 
 button:hover {
-   background-color:#ddd;
+   background-color:#ff8c00; /* Темно-оранжевый при наведении */
+   transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+button:disabled {
+   background-color:#444; /* Серый цвет для отключенных кнопок */
+   color:#777; /* Тусклый текст на отключенных кнопках */
+   cursor:not-allowed;
+}
+
+/* Стили для сообщений об окончании игры */
+#message {
+   font-weight:bold; 
+   font-size:2em; 
+   margin-top:20px; 
+   color:#ffa500; 
+}
+
+/* Стили для виселицы (если есть) - добавьте свои стили здесь при необходимости */
+
+.hangman-container {
+   display:flex; 
+   justify-content:center; 
+}
+
+.hangman img {
+   width:auto; 
 }
