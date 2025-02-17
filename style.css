@@ -1,138 +1,40 @@
 body {
-    font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
-    text-align: center; /* Центрирование текста */
-    background-color: #000; /* Черный фон */
-    color: #ffa500; /* Оранжевый текст */
+    background-color:black;
 }
 
 h1 {
-    font-size: 3em; /* Увеличенный размер заголовка */
-    color: #ffa500; /* Оранжевый заголовок */
-    text-shadow: 2px 2px 4px #000; /* Тень для заголовка */
+    color: gold;
+    font-family: Monocraft;
+    margin: 0 35% 0 25%;
+    font-size: 32px;
 }
 
 h2 {
     color: goldenrod;
-    font-family: 'Marck Script'; /* Подзаголовок */
+    font-family: 'Marck Script';
     margin: 0 30% 0 40%;
     font-size: 28px;
 }
 
 p {
     color: darkgoldenrod;
-    font-family: 'Comic Sans MS'; /* Обычный текст */
+    font-family: 'Comic Sans MS';
     margin: 0 30% 0 30%;
     font-size: 20px;
 }
 
 summary {
     color: goldenrod;
-    font-family: 'Marck Script'; /* Сводка */
+    font-family: 'Marck Script';
     margin: 0 30% 0 35%;
     font-size: 28px;
 }
 
 .b {
-    font-style: italic; /* Курсивный текст */
-}
-
-#word-display {
-    font-size: 4em; /* Увеличенный размер отображаемого слова */
-    margin-bottom: 20px;
-    letter-spacing: 15px; /* Разряженные буквы */
-}
-
-#image-container {
-    display: flex;
-    justify-content: flex-start; /* Выравнивание по левому краю */
-    align-items: center;
-    margin-bottom: 20px; /* Отступ снизу */
+    font-style:italic;
 }
 
 img {
-    max-width: 200px; /* Ограничиваем ширину изображения */
-    margin-right: 30px; /* Отступ между изображением и текстом */
-}
-
-#guesses {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 600px; /* Увеличенная ширина для кнопок в ряду */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#guesses button {
-    width: calc(100% / 7 - 10px); /* Ширина кнопки с учетом отступов */
-    box-sizing: border-box; /* Чтобы отступы не увеличивали ширину кнопки */
-    font-size: 1.5em; /* Увеличенный размер текста на кнопках */
-}
-
-#lives {
-    font-size: 2.5em; /* Увеличенный размер отображения жизней */
-    margin-bottom: 20px;
-}
-
-/* Стили для ссылок в стиле "Bendy" */
-a {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    color: black;
-    text-decoration: none;
-    border: 2px solid black;
-    border-radius: 5px;
-    font-family: 'YourCartoonFont', sans-serif; /* Замените на подходящий шрифт */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Тень для имитации чернил */
-    transition: all 0.3s ease;
-}
-
-a:hover {
-   transform: rotate(-3deg);
-   background-color: rgba(0, 0, 0, 0.1);
-   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Кнопки перезапуска и подсказок */
-button {
-   padding: 15px 30px; /* Увеличенные отступы для кнопок */
-   font-size: 1.5em; /* Увеличенный размер текста на кнопках */
-   background-color: #ffa500; /* Оранжевые кнопки */
-   color: black; /* Черный текст на кнопках */
-   border-radius: 5px;
-   cursor:pointer; 
-   margin:auto; 
-   transition:.3s ease;
-}
-
-button:hover {
-   background-color:#ff8c00; /* Темно-оранжевый при наведении */
-   transform: scale(1.1); /* Легкое увеличение при наведении */
-}
-
-button:disabled {
-   background-color:#444; /* Серый цвет для отключенных кнопок */
-   color:#777; /* Тусклый текст на отключенных кнопках */
-   cursor:not-allowed;
-}
-
-/* Стили для сообщений об окончании игры */
-#message {
-   font-weight:bold; 
-   font-size:2em; 
-   margin-top:20px; 
-   color:#ffa500; 
-}
-
-/* Стили для виселицы (если есть) - добавьте свои стили здесь при необходимости */
-
-.hangman-container {
-   display:flex; 
-   justify-content:center; 
-}
-
-.hangman img {
-   width:auto; 
+    margin: 0 30% 0 30%;
+    border-radius:50px 20px 50px 20px;
 }
