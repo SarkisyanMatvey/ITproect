@@ -1,40 +1,109 @@
 body {
-    background-color:black;
+    background-color: black;
+    color: darkgoldenrod; /* Изменил цвет текста на более подходящий */
+    font-family: 'Comic Sans MS', sans-serif; /* Добавил запасной шрифт */
+    text-align: center; /* Центрирование контента */
 }
 
 h1 {
     color: gold;
-    font-family: Monocraft;
-    margin: 0 35% 0 25%;
+    font-family: Monocraft, monospace; /* Добавил запасной шрифт */
+    margin: 20px auto; /* Центрирование заголовка */
     font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
 }
 
-h2 {
-    color: goldenrod;
-    font-family: 'Marck Script';
-    margin: 0 30% 0 40%;
-    font-size: 28px;
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'YourCartoonFont', sans-serif; /* Замените на подходящий шрифт */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Тень для имитации чернил */
+    transition: all 0.3s ease;
+    background-color: #fff; /* Добавил белый фон */
 }
 
-p {
-    color: darkgoldenrod;
-    font-family: 'Comic Sans MS';
-    margin: 0 30% 0 30%;
-    font-size: 20px;
+a:hover {
+    transform: rotate(-3deg);
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-summary {
-    color: goldenrod;
-    font-family: 'Marck Script';
-    margin: 0 30% 0 35%;
-    font-size: 28px;
+#image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
 }
 
-.b {
-    font-style:italic;
+#image-container img {
+    width: 200px; /* Задайте желаемую ширину изображения */
+    margin-right: 20px;
+    border-radius: 10px; /* Добавил скругление углов */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* Тень для изображения */
 }
 
-img {
-    margin: 0 30% 0 30%;
-    border-radius:50px 20px 50px 20px;
+#lives {
+    font-size: 24px;
+    color: red; /* Изменил цвет жизней */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#word-display {
+    font-size: 36px;
+    margin: 20px auto;
+    letter-spacing: 5px;
+}
+
+#guesses {
+    margin: 20px auto;
+}
+
+#guesses button {
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#guesses button:hover {
+    background-color: #ddd;
+}
+
+#guesses button:disabled {
+    background-color: #eee;
+    color: #999;
+    cursor: not-allowed;
+}
+
+#message {
+    font-size: 24px;
+    margin: 20px auto;
+    color: gold; /* Изменил цвет сообщения */
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ddd;
 }
