@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виселица - Бенди</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #000; /* Черный фон */
+            color: #ffa500; /* Оранжевый текст */
+        }
+
+        h1 {
+            font-size: 3em; /* Увеличенный размер заголовка */
+            color: #ffa500; /* Оранжевый заголовок */
+            text-shadow: 2px 2px 4px #000; /* Тень для заголовка */
+        }
+
+        #word-display {
+            font-size: 4em; /* Увеличенный размер отображаемого слова */
+            margin-bottom: 20px;
+            letter-spacing: 15px; /* Разряженные буквы */
+        }
+
+        #image-container {
+            display: flex;
+            justify-content: flex-start; /* Выравнивание по левому краю */
+            align-items: center;
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+
+        img {
+            max-width: 200px; /* Ограничиваем ширину изображения */
+            margin-right: 30px; /* Отступ между изображением и текстом */
+        }
+
+        #guesses {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 600px; /* Увеличенная ширина для кнопок в ряду */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            #guesses button {
+                width: calc(100% / 7 - 10px); /* Ширина кнопки с учетом отступов */
+                box-sizing: border-box; /* Чтобы отступы не увеличивали ширину кнопки */
+                font-size: 1.5em; /* Увеличенный размер текста на кнопках */
+            }
+
+        #lives {
+            font-size: 2.5em; /* Увеличенный размер отображения жизней */
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px; /* Увеличенные отступы для кнопок */
+            font-size: 1.5em; /* Увеличенный размер текста на кнопках */
+            background-color: #ffa500; /* Оранжевые кнопки */
+            color: black; /* Черный текст на кнопках */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+            button:hover {
+                background-color: #ff8c00; /* Темно-оранжевый при наведении */
+                transform: scale(1.1); /* Легкое увеличение при наведении */
+            }
+
+            button:disabled {
+                background-color: #444; /* Серый цвет для отключенных кнопок */
+                color: #777; /* Тусклый текст на отключенных кнопках */
+                cursor: not-allowed;
+            }
+
+        #message {
+            font-weight: bold;
+            font-size: 2em; /* Увеличенный размер сообщения */
+            margin-top: 20px;
+            color: #ffa500; /* Оранжевый цвет для сообщений */
+        }
+    </style>
+</head>
+<body>
+    <h1>Виселица - Тема Бенди</h1>
+
+    <div id="image-container">
+        <img src="1.png" alt="Bendy Image"> <!-- Изображение слева от поля -->
+        <div id="lives">♪ ♪ ♪ ♪ ♪ ♪</div> <!-- Отображение жизней -->
+    </div>
+
+    <div id="word-display"></div>
+    <div id="guesses"></div>
+    <p id="message"></p>
+
+    <button id="hint-random" style="display:block;">Подсказка (Случайная буква)</button> <!-- Кнопка для случайной буквы -->
+    <button id="hint-selected" style="display:block;">Подсказка (Выбранная буква)</button> <!-- Кнопка для выбранной буквы -->
+
+    <button id="restart-button" style="display:none;">Начать заново</button> <!-- Кнопка для перезапуска игры -->
+
+    <script>
+        const words = [
+            "бенди", "чернила", "джоуи", "алиса", "борис", "сэмми",
+            "генри", "мультфильм", "инкрустация", "анимация",
+            "воскрешение", "первый", "второй", "третий",
+            "паутина", "кошмарный", "ужасы"
+        ]; // Слова, связанные с франшизой Bendy
+
+        let word = "";
+        let guessedLetters = [];
+        let remainingAttempts = 6;
+
+        const wordDisplay = document.getElementById("word-display");
+        const guessesDiv = document.getElementById("guesses");
+        const livesDiv = document.getElementById("lives");
+        const messagePara = document.getElementById("message");
+        const restartButton = document.getElementById("restart-button");
+        const hintRandomButton = document.getElementById("hint-random");
+        const hintSelectedButton = document.getElementById("hint-selected");
+
+        function startGame() {
+            word = words[Math.floor(Math.random() * words.length)];
+            guessedLetters = [];
+            remainingAttempts = 6;
+
+            displayWord();
+            displayGuesses();
+            updateLives();
+            messagePara.textContent = "";
+
+            hintRandomButton.style.display = "block"; // Показываем кнопку подсказки
+            hintSelectedButton.style.display = "block"; // Показываем кнопку подсказки
+            restartButton.style.display = "none"; // Скрываем кнопку перезапуска
+        }
+
+        function displayWord() {
+            let display = "";
+
+            for (let i = 0; i < word.length; i++) {
+                const letter = word[i];
+                if (guessedLetters.includes(letter)) {
+                    display += letter + " "; // Отображаем угаданную букву
+                } else {
+                    display += "_ "; // Отображаем подчеркивание
+                }
+            }
+
+            wordDisplay.textContent = display.trim(); // Убираем лишний пробел в конце
+        }
+
+        function displayGuesses() {
+            guessesDiv.innerHTML = "";
+
+            const alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя"; // Русский алфавит
+
+            for (let i = 0; i < alphabet.length; i++) {
+                const letter = alphabet[i];
+                const button = document.createElement("button");
+                button.textContent = letter.toUpperCase();
+                button.addEventListener("click", guessLetter);
+
+                if (guessedLetters.includes(letter) || remainingAttempts <= 0 || wordDisplay.textContent.replace(/ /g, '') === word) {
+                    button.disabled = true; // Отключаем кнопку, если буква уже угадана или игра окончена
+                }
+
+                guessesDiv.appendChild(button);
+
+                if ((i + 1) % 7 === 0) {
+                    const br = document.createElement("br"); // Создаем перенос строки
+                    guessesDiv.appendChild(br); // Добавляем перенос строки после каждой 7-й кнопки
+                }
+            }
+        }
+
+        function updateLives() {
+            livesDiv.textContent = "♪ ".repeat(remainingAttempts).trim(); // Обновляем символы жизней
+        }
+
+        function guessLetter(event) {
+            const letter = event.target.textContent.toLowerCase(); // Преобразуем в нижний регистр
+
+            if (!guessedLetters.includes(letter)) { // Проверяем, не была ли буква уже угадана
+                guessedLetters.push(letter);
+
+                if (!word.includes(letter)) { // Если буква не в слове
+                    remainingAttempts--;
+                    updateLives();
+                }
+
+                displayWord();
+                displayGuesses();
+                checkGameStatus();
+            }
+        }
+
+        function checkGameStatus() {
+            if (wordDisplay.textContent.replace(/ /g, '') === word) { // Убираем пробелы при проверке
+                messagePara.textContent = "Вы спасли Бенди! Вы выиграли!";
+                restartButton.style.display = "block"; // Показываем кнопку перезапуска
+                hintRandomButton.style.display = "none"; // Скрываем кнопку подсказки
+                hintSelectedButton.style.display = "none"; // Скрываем кнопку подсказки
+            } else if (remainingAttempts <= 0) {
+                messagePara.textContent = "Чернила поглотили вас... Загаданное слово было: " + word;
+                restartButton.style.display = "block"; // Показываем кнопку перезапуска
+                hintRandomButton.style.display = "none"; // Скрываем кнопку подсказки
+                hintSelectedButton.style.display = "none"; // Скрываем кнопку подсказки
+            }
+        }
+
+        hintRandomButton.addEventListener("click", () => {
+            if (hintRandomButton.style.display !== "none") {
+                let randomLetter;
+                do {
+                    randomLetter = word[Math.floor(Math.random() * word.length)];
+                } while (guessedLetters.includes(randomLetter)); // Находим случайную букву, которая еще не угадана
+
+                guessedLetters.push(randomLetter); // Добавляем её в угаданные буквы
+                displayWord();
+                displayGuesses();
+                checkGameStatus();
+                hintRandomButton.style.display = "none"; // Отключаем кнопку подсказки
+            }
+        });
+
+        hintSelectedButton.addEventListener("click", () => {
+            if (hintSelectedButton.style.display !== "none") {
+                const letterPositions = [];
+                for (let i = 0; i < word.length; i++) {
+                    if (!guessedLetters.includes(word[i])) {
+                        letterPositions.push(i); // Сохраняем позиции неугаданных букв
+                    }
+                }
+
+                if (letterPositions.length > 0) {
+                    const positionPrompt = prompt("Введите номер позиции буквы (начиная с 1):");
+                    if (positionPrompt) {
+                        const position = parseInt(positionPrompt) - 1; // Приводим к индексу массива
+                        if (!isNaN(position) && position >= 0 && position < word.length && !guessedLetters.includes(word[position])) {
+                            guessedLetters.push(word[position]); // Добавляем её в угаданные буквы
+                            displayWord();
+                            displayGuesses();
+                            checkGameStatus();
+                            hintSelectedButton.style.display = "none"; // Отключаем кнопку подсказки
+                        } else {
+                            alert("Некорректная позиция.");
+                        }
+                    }
+                } else {
+                    alert("Все буквы уже угаданы.");
+                }
+            }
+        });
+
+        restartButton.addEventListener("click", startGame); // Добавляем обработчик для кнопки перезапуска
+
+        document.addEventListener('keydown', function (event) {
+            const letter = event.key.toLowerCase();
+            if (/^[а-яё]$/.test(letter)) { // Проверяем, является ли нажатая клавиша буквой русского алфавита
+                const buttons = guessesDiv.querySelectorAll('button');
+                buttons.forEach(button => {
+                    if (button.textContent.toLowerCase() === letter) {
+                        guessLetter({ target: button }); // Вызываем функцию угадывания с кнопкой
+                    }
+                });
+            }
+        });
+
+        startGame(); // Запускаем игру при загрузке страницы
+    </script>
+</body>
+</html>
