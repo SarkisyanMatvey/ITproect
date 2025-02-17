@@ -41,8 +41,8 @@ img {
 
 .btn {
     padding: 10px 20px; /* Отступы внутри кнопки */
-    background-color: #3498db; /* Цвет фона */
-    color: #fff; /* Цвет текста */
+    background-color: #ffa500; /* Цвет фона */
+    color: black; /* Цвет текста */
     text-decoration: none; /* Убираем подчеркивание */
     border-radius: 5px; /* Скругление углов */
     display: inline-block; /* Устанавливаем блочный элемент для кнопки */
