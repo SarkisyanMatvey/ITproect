@@ -86,6 +86,17 @@
             margin-top: 20px;
             color: #ffa500; /* Оранжевый цвет для сообщений */
         }
+
+        .btn {
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    background-color: #3498db; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px; /* Скругление углов */
+    display: inline-block; /* Устанавливаем блочный элемент для кнопки */
+    margin: 0 auto; /* Центрируем элемент */
+}
+
     </style>
 </head>
 <body>
@@ -104,6 +115,7 @@
     <button id="hint-selected" style="display:block;">Подсказка (Выбранная буква)</button> <!-- Кнопка для выбранной буквы -->
 
     <button id="restart-button" style="display:none;">Начать заново</button> <!-- Кнопка для перезапуска игры -->
+    <a href="index.html" class="btn">Вернутся на Главную</a>
 
     <script>
         const words = [
